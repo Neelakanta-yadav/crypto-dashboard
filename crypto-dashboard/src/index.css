@@ -12,17 +12,44 @@ code {
     monospace;
 }
 .news-feed{
-  background-color: red;
+  background-color: rgb(204, 204, 231);
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 /.2);
+  max-width: 300px;
 }
 .currency-converter{
-  background-color: blue;
+  background-color: rgb(230, 223, 211);
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 0 3px 10px rgb(0 0 0 /.2);
+  text-align: center;
 }
 .exchange-rate{
-  background-color: green;
+  background-color: rgb(221, 230, 221);
+  padding: 5px;
+  margin: 36px;
+  box-shadow: 0 3px 10px rgb(0 0 0 /.2);
 }
 .app{
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+}
+button{
+  border: none;
+  float: right;
+  margin: 8px;
+}
+button:hover{
+  background-color: coral;
+}
+.input-box {
+  background-color: rgb(218, 227, 239);
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 /.2);
+}
+.app-wraper{
+  display: flex;
 }

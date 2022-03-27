@@ -8,10 +8,17 @@ const CurrencyConverter = () => {
     const [chosenPrimaryCurrency, setChosenPrimaryCurrency] = useState("BTC")
     const [chosenSecondaryCurrency, setChosenSecondaryCurrency] = useState("USD")
     const [amount, setAmount] = useState(1)
-    const [exchangeRate, setExchangeRate] = useState(0)
+    // const [exchangeRate, setExchangeRate] = useState(0)
     const [result, setResult] = useState(0)
-    const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState("BTC")
-    const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState("USD")
+    // const [primaryCurrencyExchanged, setPrimaryCurrencyExchanged] = useState("BTC")
+    // const [secondaryCurrencyExchanged, setSecondaryCurrencyExchanged] = useState("USD")
+
+    const [exchangedData, setExchangedData] = useState({
+        primaryCurrency: "BTC",
+        secondaryCurrency: "USD",
+        exchangeRate: 0
+    })
+
     console.log(amount)
 
     const convert = () => {
@@ -29,10 +36,15 @@ const CurrencyConverter = () => {
 
         axios.request(options).then( (response) => {
             console.log(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
-            setExchangeRate(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
+            // setExchangeRate(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]);
             setResult(response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"] * amount);
-            setPrimaryCurrencyExchanged(chosenPrimaryCurrency);
-            setSecondaryCurrencyExchanged(chosenSecondaryCurrency);
+            // setPrimaryCurrencyExchanged(chosenPrimaryCurrency);
+            // setSecondaryCurrencyExchanged(chosenSecondaryCurrency);
+            setExchangedData({
+                primaryCurrency: chosenPrimaryCurrency,
+                secondaryCurrency: chosenSecondaryCurrency,
+                exchangeRate: response.data["Realtime Currency Exchange Rate"]["5. Exchange Rate"]
+            })
         }).catch( (error) => {
             console.error(error);
         });
@@ -90,9 +102,12 @@ const CurrencyConverter = () => {
                 <button id="convert-button" onClick={convert}>Convert</button>
             </div>
             <ExchangeRate 
-                exchangeRate={exchangeRate}
-                chosenPrimaryCurrency={primaryCurrencyExchanged}
-                chosenSecondaryCurrency={secondaryCurrencyExchanged}
+                // exchangeRate={exchangeRate}
+                // chosenPrimaryCurrency={primaryCurrencyExchanged}
+                // chosenSecondaryCurrency={secondaryCurrencyExchanged}
+
+                //pasing object as props
+                exchangedData = {exchangedData}
             />
         </div>
 
